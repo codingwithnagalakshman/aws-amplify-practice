@@ -28,6 +28,16 @@ export const auth = defineAuth({
           familyName: "family_name",
         },
       },
+      loginWithAmazon: {
+        clientId: secret("amazonAppClientId"),
+        clientSecret: secret("amazonAppClientSecret"),
+        scopes: ["profile", "postal_code"],
+        attributeMapping: {
+          email: "email",
+          givenName: "name",
+          familyName: "name",
+        },
+      },
       callbackUrls: ["http://localhost:5173/"],
       logoutUrls: ["http://localhost:5173/"],
     },
