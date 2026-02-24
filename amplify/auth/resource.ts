@@ -18,6 +18,16 @@ export const auth = defineAuth({
           familyName: "last_name",
         },
       },
+      google: {
+        clientId: secret("googleAppClientId"),
+        clientSecret: secret("googleAppClientSecret"),
+        scopes: ["email", "profile"],
+        attributeMapping: {
+          email: "email",
+          givenName: "given_name",
+          familyName: "family_name",
+        },
+      },
       callbackUrls: ["http://localhost:5173/"],
       logoutUrls: ["http://localhost:5173/"],
     },
