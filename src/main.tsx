@@ -19,7 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <div>
               <p>Username: {user?.username}</p>
               <p>UserId: {user?.userId}</p>
-              <p>LoginId: {user?.signInDetails?.loginId}</p>
               <button onClick={signOut}>Sign Out</button>
             </div>
           )}
@@ -27,5 +26,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </div>
       <App />
     </Authenticator>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

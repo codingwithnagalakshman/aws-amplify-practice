@@ -1,4 +1,4 @@
-import { defineAuth } from "@aws-amplify/backend";
+import { defineAuth, secret } from "@aws-amplify/backend";
 
 /**
  * Define and configure your auth resource
@@ -6,6 +6,38 @@ import { defineAuth } from "@aws-amplify/backend";
  */
 export const auth = defineAuth({
   loginWith: {
-    phone: true,
+    email: true,
+    externalProviders: {
+      facebook: {
+        clientId: secret("facebookAppClientId"),
+        clientSecret: secret("facebookAppClientSecret"),
+        scopes: ["email", "public_profile"],
+        attributeMapping: {
+          email: "email",
+          givenName: "first_name",
+          familyName: "last_name",
+        },
+      },
+      callbackUrls: ["http://localhost:5173/"],
+      logoutUrls: ["http://localhost:5173/"],
+    },
+  },
+  userAttributes: {
+    email: {
+      mutable: true,
+      required: true,
+    },
+    givenName: {
+      mutable: true,
+      required: true,
+    },
+    familyName: {
+      mutable: true,
+      required: true,
+    },
+    "custom:is_beta_user": {
+      dataType: "Boolean",
+      mutable: true,
+    },
   },
 });
